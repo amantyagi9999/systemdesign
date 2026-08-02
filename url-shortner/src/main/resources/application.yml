@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: url-shortener
+
+  # H2 in-memory DB so the app is runnable out-of-the-box for this demo.
+  # For production, swap to the commented Postgres block below and point
+  # writes at the primary + reads at replicas as discussed in the HLD.
+  datasource:
+    url: jdbc:h2:mem:urlshortener;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  sql:
+    init:
+      mode: always
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2000ms
+      # In production: maxmemory-policy allkeys-lru (set in redis.conf),
+      # matching the eviction strategy decided in the design discussion.
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.example.urlshortener: INFO

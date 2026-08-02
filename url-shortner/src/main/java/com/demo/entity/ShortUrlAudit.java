@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "short_url_audit")
+@Table(name = "SHORT_URL_AUDIT")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,7 +29,7 @@ public class ShortUrlAudit {
     private String action; // CREATED, UPDATED, DELETED, EXPIRED
 
     @Column(name = "modified_by")
-    private Long modifiedBy;
+    private String modifiedBy;
 
     @Column(name = "modified_at", nullable = false)
     private LocalDateTime modifiedAt;

@@ -13,5 +13,5 @@ public class DefaultApiResponse {
 
     private String message;
     private Object data;
-    private String code;
+    private int code;
 }

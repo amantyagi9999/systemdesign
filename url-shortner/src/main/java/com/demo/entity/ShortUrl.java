@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Table(
-        name = "short_url",
+        name = "SHORT_URL",
         uniqueConstraints = @UniqueConstraint(name = "uk_short_code", columnNames = "short_code")
 )
 public class ShortUrl {
@@ -25,7 +25,7 @@ public class ShortUrl {
     private Long id;
 
     @Column(name = "short_code", nullable = false, unique = true, length = 10)
-    private String shortUrl;
+    private String shortCode;
 
     @Column(name = "long_url", nullable = false, length = 2048)
     private String longUrl;
@@ -54,5 +54,9 @@ public class ShortUrl {
     @Column(name = "click_count", nullable = false)
     @Builder.Default
     private Long clickCount = 0L;
+
+    public boolean isExpired() {
+        return expiryDate != null && LocalDateTime.now().isAfter(expiryDate);
+    }
 
 }

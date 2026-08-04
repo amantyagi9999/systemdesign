@@ -1,0 +1,70 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: truecaller-app
+
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://localhost:27017/truecaller}
+
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 32
+          max-idle: 16
+          min-idle: 4
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKERS:localhost:9092}
+    consumer:
+      group-id: spam-report-consumer-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.demo.app.event"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    topics:
+      spam-report: spam-report-events
+
+aws:
+  dynamodb:
+    endpoint: ${DYNAMODB_ENDPOINT:http://localhost:8000}  # DynamoDB Local for dev; remove override in prod for real AWS endpoint
+    region: ${AWS_REGION:us-east-1}
+    table-name: ResolvedNumberIndex
+
+app:
+  cache:
+    ttl-seconds: 86400          # 24h safety-net TTL (active invalidation is primary mechanism)
+    lock-ttl-millis: 3000        # cache-stampede lock hold time
+    lock-wait-retry-millis: 100
+    lock-wait-max-retries: 20
+  rate-limit:
+    read:
+      capacity: 50
+      refill-tokens: 50
+      refill-duration-seconds: 1
+    write:
+      capacity: 5
+      refill-tokens: 5
+      refill-duration-seconds: 1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.truecaller.app: INFO

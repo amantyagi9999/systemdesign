@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7e2bd865-e426-4e29-aa70-a3aa0277f32d" name="Changes" comment="Spam +search + upload service">
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HELP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Truecaller_System_Design_Summary.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/TruecallerAppApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/api/CallerIdController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/config/DynamoDbConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/config/KafkaTopicConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/config/RedisConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/dto/ContactDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/dto/ContactUploadDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/dto/DefaultApiResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/dto/SearchDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/dto/SpamDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/dto/enums/SpamCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/event/SpamConsumer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/event/SpamProducer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/event/SpamReportEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/exception/ApiException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/exception/DownstreamUnavailableException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/exception/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/exception/NumberNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/exception/RateLimitExceededException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/model/dynamo/ResolvedNumber.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/model/mongo/ContactDocument.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/model/mongo/ContactEntry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/repository/ContactDocumentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/repository/ResolvedNumberDynamoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/service/ContactUploadService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/service/ResolvedNumberCacheService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/service/SearchService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/service/SpamReportService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/demo/TruecallerAppApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/TruecallerAppApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/api/CallerIdController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/config/DynamoDbConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/config/KafkaTopicConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/config/RedisConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dto/ContactDto$ContactDtoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dto/ContactDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dto/ContactUploadDto$ContactUploadDtoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dto/ContactUploadDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dto/DefaultApiResponse$DefaultApiResponseBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dto/DefaultApiResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dto/SearchDto$SearchDtoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dto/SearchDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dto/SpamDto$SpamDtoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dto/SpamDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dto/enums/SpamCategory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/event/SpamConsumer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/event/SpamProducer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/event/SpamReportEvent$SpamReportEventBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/event/SpamReportEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/exception/ApiException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/exception/DownstreamUnavailableException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/exception/GlobalExceptionHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/exception/NumberNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/exception/RateLimitExceededException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/dynamo/ResolvedNumber$ResolvedNumberBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/dynamo/ResolvedNumber.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/mongo/ContactDocument$ContactDocumentBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/mongo/ContactDocument.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/mongo/ContactEntry$ContactEntryBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/mongo/ContactEntry.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/repository/ContactDocumentRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/repository/ResolvedNumberDynamoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/ContactUploadService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/ResolvedNumberCacheService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/SearchService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/SpamReportService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.demo.TruecallerAppApplicationTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.demo.TruecallerAppApplicationTests.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/demo/TruecallerAppApplicationTests.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;amantyagi9999&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/amantyagi9999/systemdesign.git&quot;,
+    &quot;accountId&quot;: &quot;b4c3944f-2684-4b59-8e6b-4e109be91a74&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3HOfhwDOCTADf2masngjSxSuZ6x" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.truecaller-app [cleam,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.truecaller-app [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.truecaller-app [clean].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.TruecallerAppApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/amant/Desktop/System Design/systemdesign/truecaller-app&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/demo" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.demo.config" />
+      <recent name="com.demo.dto" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean" />
+      <command value="mvn cleam install" />
+      <command value="mvn clean install" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.TruecallerAppApplication">
+    <configuration name="TruecallerAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="url-shortner" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.demo.TruecallerAppApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.demo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UrlShortnerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="url-shortner" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.demo.UrlShortnerApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.demo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.TruecallerAppApplication" />
+        <item itemvalue="Spring Boot.UrlShortnerApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.33813.55" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7e2bd865-e426-4e29-aa70-a3aa0277f32d" name="Changes" comment="" />
+      <created>1785744161550</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1785744161550</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Trucealler like app initial comit">
+      <option name="closed" value="true" />
+      <created>1785826931560</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1785826931561</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Spam +search + upload service">
+      <option name="closed" value="true" />
+      <created>1785864576692</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1785864576692</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Trucealler like app initial comit" />
+    <MESSAGE value="Spam +search + upload service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Spam +search + upload service" />
+  </component>
+</project>

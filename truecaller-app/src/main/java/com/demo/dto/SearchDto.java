@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class SearchDto {
 
     private String displayName;
+    private String phoneNumber;
     private String category;       // NONE / SPAM / SCAM / TELEMARKETER
     private String photoUrl;
     private boolean businessVerified;

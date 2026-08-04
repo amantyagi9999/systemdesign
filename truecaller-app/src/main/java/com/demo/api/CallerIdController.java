@@ -1,5 +1,6 @@
 package com.demo.api;
 
+import com.demo.dto.ContactUploadDto;
 import com.demo.dto.DefaultApiResponse;
 import com.demo.dto.SearchDto;
 import com.demo.dto.SpamDto;
@@ -31,12 +32,21 @@ public class CallerIdController {
                 .code(HttpStatus.OK.value()).build());
     }
 
-    @PostMapping("spam")
-    public ResponseEntity<DefaultApiResponse> searchPhoneNumber(@RequestBody SpamDto spamDto){
-        SearchDto  searchDto = searchService.searchPhoneNumber(phoneNumber);
+    @PostMapping("contacts/upload")
+    public ResponseEntity<DefaultApiResponse> repostSpam(@RequestBody SpamDto spamDto){
+       spamReportService.reportSpam(spamDto);
         return ResponseEntity.ok(DefaultApiResponse.builder()
-                .message("Number Searched success")
-                .data(searchDto)
+                .message("Number Has marked as Spammed")
+                .data(true)
+                .code(HttpStatus.ACCEPTED.value()).build());
+    }
+
+    @PostMapping("/spam")
+    public ResponseEntity<DefaultApiResponse> uploadContacts(@RequestBody ContactUploadDto contactUploadDto){
+        int uploadedContacts = contactUploadService.uploadContacts(contactUploadDto);
+        return ResponseEntity.ok(DefaultApiResponse.builder()
+                .message("Contacts uploaded successfully")
+                .data(uploadedContacts)
                 .code(HttpStatus.OK.value()).build());
     }
 

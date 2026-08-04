@@ -27,10 +27,11 @@ public class DynamoDbConfig {
 
     @Bean
     public DynamoDbClient dynamoDbClient(){
-        /*return DynamoDbClient.builder()
-                .region(Region.of(region)).build();*/
+        return DynamoDbClient.builder()
+                .endpointOverride(URI.create(endpointOverride))
+                .region(Region.of(region)).build();
 
-        DynamoDbClient.Builder builder = DynamoDbClient.builder()
+       /* DynamoDbClient.Builder builder = DynamoDbClient.builder()
                 .region(Region.of(region));
 
         // For local dev / DynamoDB Local. In real AWS prod, omit the override
@@ -38,7 +39,7 @@ public class DynamoDbConfig {
         if (endpointOverride != null && !endpointOverride.isBlank()) {
             builder.endpointOverride(URI.create(endpointOverride));
         }
-        return builder.build();
+        return builder.build();*/
     }
 
     @Bean

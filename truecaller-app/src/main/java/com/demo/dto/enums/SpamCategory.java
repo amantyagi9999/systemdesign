@@ -2,7 +2,7 @@ package com.demo.dto.enums;
 
 public enum SpamCategory {
 
-    VERIFIED,
+    NONE,
     SCAM,
     SPAM,
     TELECALLER,

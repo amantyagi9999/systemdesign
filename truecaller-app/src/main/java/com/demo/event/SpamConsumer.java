@@ -41,7 +41,7 @@ public class SpamConsumer {
             ResolvedNumber updated = existingNumber.toBuilder()
                     .spamScore(newScore)
                     .category(newCategory)
-                    .lastUpdated(LocalDateTime.now())
+                    .lastUpdated(Instant.now())
                     .build();
 
             resolvedNumberDynamoRepository.save(updated);

@@ -32,7 +32,7 @@ public class CallerIdController {
                 .code(HttpStatus.OK.value()).build());
     }
 
-    @PostMapping("contacts/upload")
+    @PostMapping("spam")
     public ResponseEntity<DefaultApiResponse> repostSpam(@RequestBody SpamDto spamDto){
        spamReportService.reportSpam(spamDto);
         return ResponseEntity.ok(DefaultApiResponse.builder()
@@ -41,7 +41,7 @@ public class CallerIdController {
                 .code(HttpStatus.ACCEPTED.value()).build());
     }
 
-    @PostMapping("/spam")
+    @PostMapping("/contacts/upload")
     public ResponseEntity<DefaultApiResponse> uploadContacts(@RequestBody ContactUploadDto contactUploadDto){
         int uploadedContacts = contactUploadService.uploadContacts(contactUploadDto);
         return ResponseEntity.ok(DefaultApiResponse.builder()

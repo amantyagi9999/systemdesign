@@ -24,7 +24,7 @@ public class ContactDocument {
     private String userId;
 
     @Indexed
-    private LocalDateTime uploadedAt;
+    private Instant uploadedAt;
 
     private List<ContactEntry> contacts;
 

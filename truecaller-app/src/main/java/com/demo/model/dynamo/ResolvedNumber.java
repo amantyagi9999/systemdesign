@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Data
@@ -22,7 +23,7 @@ public class ResolvedNumber {
     private Double spamScore;         // Confidence score 0.0 - 1.0, decays over time
     private Boolean businessVerified; // True if matched against verified business registry
     private String photoUrl;
-    private LocalDateTime lastUpdated;
+    private Instant lastUpdated;
 
     @DynamoDbPartitionKey
     public String getPhoneNumber() {

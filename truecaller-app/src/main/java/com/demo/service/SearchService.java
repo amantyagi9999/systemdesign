@@ -58,7 +58,7 @@ public class SearchService {
 
         // Fallback: the lock-holder is taking too long (or crashed) - go
         // straight to DynamoDB rather than block the client indefinitely.
-        log.warn("Cache fill wait exhausted for number={}, falling back to direct DB read", phoneNumber);
+       // log.warn("Cache fill wait exhausted for number={}, falling back to direct DB read", phoneNumber);
         ResolvedNumber resolved = getResolvedNumberFromDynamoDB(phoneNumber);
         return toResponse(resolved);
 

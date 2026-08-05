@@ -38,7 +38,7 @@ aws:
   dynamodb:
     endpoint: ${DYNAMODB_ENDPOINT:http://localhost:8000}  # DynamoDB Local for dev; remove override in prod for real AWS endpoint
     region: ${AWS_REGION:us-east-1}
-    tableName: ResolvedNumberIndex
+    tableName: resolved_numbers
 
 app:
   cache:

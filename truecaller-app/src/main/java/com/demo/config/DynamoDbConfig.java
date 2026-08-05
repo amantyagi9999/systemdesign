@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
@@ -29,17 +31,13 @@ public class DynamoDbConfig {
     public DynamoDbClient dynamoDbClient(){
         return DynamoDbClient.builder()
                 .endpointOverride(URI.create(endpointOverride))
-                .region(Region.of(region)).build();
+                .region(Region.of(region))
+                .credentialsProvider(
+                        StaticCredentialsProvider.create(
+                                AwsBasicCredentials.create("dummy", "dummy")
+                        )
+                ).build();
 
-       /* DynamoDbClient.Builder builder = DynamoDbClient.builder()
-                .region(Region.of(region));
-
-        // For local dev / DynamoDB Local. In real AWS prod, omit the override
-        // and rely on the default AWS endpoint + IAM role credentials.
-        if (endpointOverride != null && !endpointOverride.isBlank()) {
-            builder.endpointOverride(URI.create(endpointOverride));
-        }
-        return builder.build();*/
     }
 
     @Bean
@@ -51,7 +49,15 @@ public class DynamoDbConfig {
 
     @Bean
     public DynamoDbTable<ResolvedNumber> resolvedNumberTable(DynamoDbEnhancedClient enhancedClient){
-        return enhancedClient.table(tableName, TableSchema.fromBean(ResolvedNumber.class));
+
+        DynamoDbTable<ResolvedNumber> table =
+                enhancedClient.table(
+                        "ResolvedNumberIndex",
+                        TableSchema.fromBean(ResolvedNumber.class)
+                );
+
+      //  table.createTable();
+        return table;
     }
 
 

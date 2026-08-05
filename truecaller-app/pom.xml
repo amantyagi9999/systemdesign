@@ -27,9 +27,15 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 		<aws-sdk.version>2.28.11</aws-sdk.version>
 		<bucket4j.version>8.10.1</bucket4j.version>
+		<!-- Used only by com.truecaller.app.batch (the Spark name-resolution job).
+             Packaged into a SEPARATE jar (classifier: spark-job, see shade plugin
+             below) - none of this ships in the normal Spring Boot executable jar. -->
+		<spark.version>3.5.1</spark.version>
+		<scala.binary.version>2.12</scala.binary.version>
+		<mongo.spark.version>10.3.0</mongo.spark.version>
 	</properties>
 	<dependencies>
 		<!-- Web -->
@@ -100,10 +106,55 @@
 			<artifactId>spring-kafka-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- ===================================================================
+             Spark name-resolution batch job (com.truecaller.app.batch package)
+
+             scope=provided: supplied by the Spark cluster/spark-submit at run
+             time, NOT bundled into the Spring Boot executable jar (spring-boot-
+             maven-plugin's "repackage" goal ignores provided-scope deps, so the
+             normal app jar stays exactly as before). They ARE bundled into the
+             separate "spark-job" classified jar built by the shade execution
+             below, which is what you point spark-submit at.
+             =================================================================== -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-core_${scala.binary.version}</artifactId>
+			<version>${spark.version}</version>
+			<scope>provided</scope>
+			<exclusions>
+				<!-- avoid clashing with Spring Boot's logging stack in the main jar -->
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_${scala.binary.version}</artifactId>
+			<version>${spark.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb.spark</groupId>
+			<artifactId>mongo-spark-connector_${scala.binary.version}</artifactId>
+			<version>${mongo.spark.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>3.0.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<!-- Normal Spring Boot executable jar - unaffected by the batch
+                 job's dependencies since those are all scope=provided above,
+                 which spring-boot-maven-plugin's repackage goal excludes. -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -116,38 +167,58 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<!-- Builds a SECOND, separate jar for the Spark job:
+                 target/truecaller-app-1.0.0-spark-job.jar
+                 This is what you point spark-submit at - it bundles
+                 mongo-spark-connector + AWS SDK, but explicitly excludes
+                 Spark itself (supplied by the cluster/spark-submit) and the
+                 whole Spring/Kafka/Redis stack (not needed by the batch job,
+                 keeps the jar from ballooning and avoids classpath clashes
+                 on the Spark cluster). -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.5.1</version>
 				<executions>
 					<execution>
-						<id>default-compile</id>
-						<phase>compile</phase>
+						<id>spark-job</id>
+						<phase>package</phase>
 						<goals>
-							<goal>compile</goal>
+							<goal>shade</goal>
 						</goals>
 						<configuration>
-							<annotationProcessorPaths>
-								<path>
-									<groupId>org.projectlombok</groupId>
-									<artifactId>lombok</artifactId>
-								</path>
-							</annotationProcessorPaths>
-						</configuration>
-					</execution>
-					<execution>
-						<id>default-testCompile</id>
-						<phase>test-compile</phase>
-						<goals>
-							<goal>testCompile</goal>
-						</goals>
-						<configuration>
-							<annotationProcessorPaths>
-								<path>
-									<groupId>org.projectlombok</groupId>
-									<artifactId>lombok</artifactId>
-								</path>
-							</annotationProcessorPaths>
+							<shadedArtifactAttached>true</shadedArtifactAttached>
+							<shadedClassifierName>spark-job</shadedClassifierName>
+							<artifactSet>
+								<excludes>
+									<exclude>org.apache.spark:*</exclude>
+									<exclude>org.scala-lang:*</exclude>
+									<exclude>org.springframework.boot:*</exclude>
+									<exclude>org.springframework:*</exclude>
+									<exclude>org.springframework.kafka:*</exclude>
+									<exclude>org.apache.kafka:*</exclude>
+									<exclude>io.lettuce:*</exclude>
+									<exclude>com.bucket4j:*</exclude>
+									<exclude>org.projectlombok:*</exclude>
+								</excludes>
+							</artifactSet>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+							</filters>
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>com.truecaller.app.batch.NameResolutionJob</mainClass>
+								</transformer>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+							</transformers>
 						</configuration>
 					</execution>
 				</executions>
